@@ -16,6 +16,7 @@ public class PlatformPlayerController : MonoBehaviour
     public AudioClip jumpSound;
     private AudioSource playerAudio;
     public AudioClip coinSound;
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,7 @@ public class PlatformPlayerController : MonoBehaviour
         }
 
         playerAudio = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
     
     }
 
@@ -49,7 +51,12 @@ public class PlatformPlayerController : MonoBehaviour
     {
         rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
 
+        animator.SetFloat("xVelocityAbs", Mathf.Abs(rb.velocity.x));
+        animator.SetFloat("yVelocity", rb.velocity.y);
+        
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        animator.SetBool("onGround", isGrounded);
 
         if (horizontalInput > 0)
         {
