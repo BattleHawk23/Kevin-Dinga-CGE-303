@@ -12,6 +12,9 @@ public class PlayerHealth : MonoBehaviour
     public GameObject playerDeathEffect;
     public static bool hitRecently = false;
     public float hitRecoveryTime = 0.2f;
+    private AudioSource playerAudio;
+    public AudioClip playerHitSound;
+    public AudioClip playerDeathSound;
     
     
     // Start is called before the first frame update
@@ -24,6 +27,7 @@ public class PlayerHealth : MonoBehaviour
         }
         healthBar.SetMaxValue(health);
         hitRecently = false;
+        playerAudio = GetComponent<AudioSource>();
     
     }
 
@@ -35,7 +39,12 @@ public class PlayerHealth : MonoBehaviour
         }
 
         hitRecently = true;
-        StartCoroutine(RecoverFromHit());
+
+        if (gameObject.activeSelf)
+        {
+            StartCoroutine(RecoverFromHit());
+        }
+        
         Vector2 direction = transform.position - enemyPosition;
         direction.Normalize();
         direction.y = direction.y * 0.5f + 0.5f;
@@ -61,14 +70,23 @@ public class PlayerHealth : MonoBehaviour
         {
             Die();
         }
+
+        else
+        {
+            playerAudio.PlayOneShot(playerHitSound);
+        }
+    
     }
     
     public void Die()
     {
         ScoreManager.gameOver = true;
 
+        GameObject deathEffect = Instantiate(playerDeathEffect, transform.position, Quaternion.identity);
 
         gameObject.SetActive(false);
+
+        playerAudio.PlayOneShot(playerDeathSound);
     }
     
     // Update is called once per frame

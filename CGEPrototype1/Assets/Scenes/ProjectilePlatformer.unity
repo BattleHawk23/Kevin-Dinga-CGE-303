@@ -350,7 +350,7 @@ MonoBehaviour:
   health: 100
   healthBar: {fileID: 122038375}
   knockbackForce: 5
-  playerDeathEffect: {fileID: 0}
+  playerDeathEffect: {fileID: 1295799082526673463, guid: f4828ed99770d11418cb2056d11bd8f3, type: 3}
   hitRecoveryTime: 0.2
 --- !u!4 &260494385 stripped
 Transform:
@@ -2336,6 +2336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   deathEffect: {fileID: 1663750259617454813, guid: ee55ff47e32e4914fa3503a2c7d52f8b, type: 3}
+  damage: 10
 --- !u!95 &813847993
 Animator:
   serializedVersion: 5
