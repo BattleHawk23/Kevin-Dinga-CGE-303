@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     private AudioSource playerAudio;
     public AudioClip playerHitSound;
     public AudioClip playerDeathSound;
+    private Animator animator;
     
     
     // Start is called before the first frame update
@@ -28,6 +29,8 @@ public class PlayerHealth : MonoBehaviour
         healthBar.SetMaxValue(health);
         hitRecently = false;
         playerAudio = GetComponent<AudioSource>();
+
+        animator = GetComponent<Animator>();
     
     }
 
@@ -56,6 +59,7 @@ public class PlayerHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(hitRecoveryTime);
         hitRecently = false;
+        animator.SetBool("hit", false);
     }
 
     public void TakeDamage(int damage)
@@ -74,6 +78,8 @@ public class PlayerHealth : MonoBehaviour
         else
         {
             playerAudio.PlayOneShot(playerHitSound);
+
+            animator.SetBool("hit", true);
         }
     
     }
@@ -86,7 +92,7 @@ public class PlayerHealth : MonoBehaviour
 
         gameObject.SetActive(false);
 
-        playerAudio.PlayOneShot(playerDeathSound);
+        
     }
     
     // Update is called once per frame

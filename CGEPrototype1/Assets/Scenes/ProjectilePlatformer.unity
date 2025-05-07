@@ -352,6 +352,8 @@ MonoBehaviour:
   knockbackForce: 5
   playerDeathEffect: {fileID: 1295799082526673463, guid: f4828ed99770d11418cb2056d11bd8f3, type: 3}
   hitRecoveryTime: 0.2
+  playerHitSound: {fileID: 8300000, guid: 7662b134a44ee744a8e7372516a52bb6, type: 3}
+  playerDeathSound: {fileID: 8300000, guid: 065decbddc5caf545a8ed216020f337a, type: 3}
 --- !u!4 &260494385 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6673966746406759308, guid: 393e1b83d04a5cf45bd29c2ab4f2683f, type: 3}
@@ -1974,7 +1976,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 72923b3ad4576b64d8c699663bb4f27d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.712
+  m_Volume: 0.58
   m_Pitch: 1
   Loop: 1
   Mute: 0
