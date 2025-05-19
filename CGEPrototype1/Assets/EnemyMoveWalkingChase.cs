@@ -12,6 +12,7 @@ public class EnemyMoveWalkingChase : MonoBehaviour
     private Transform playerTransform;
     private Rigidbody2D rb;
     private Animator anim;
+    private SpriteRenderer sr;
     
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class EnemyMoveWalkingChase : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         playerTransform = GameObject.FindWithTag("Player").transform;
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -39,7 +41,13 @@ public class EnemyMoveWalkingChase : MonoBehaviour
             {
                 StopMoving();
             }
+        
         }
+        else
+        {
+            StopMoving();
+        }
+    
     }
 
     bool IsGroundAhead()
@@ -47,10 +55,10 @@ public class EnemyMoveWalkingChase : MonoBehaviour
         float groundCheckDistance = 2.0f;
         LayerMask groundLayer = LayerMask.GetMask("Ground");
 
-        Vector2 enemyFacingDirection = transform.rotation.y == 0 ? Vector2.left : Vector2.right;
+        Vector2 enemyFacingDirection = (sr.flipX == false) ? Vector2.left : Vector2.right;
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down + enemyFacingDirection, groundCheckDistance, groundLayer);
-
+        
         return hit.collider != null;
     }
 
@@ -58,11 +66,13 @@ public class EnemyMoveWalkingChase : MonoBehaviour
     {
         if (playerDirection.x < 0)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            //transform.rotation = Quaternion.Euler(0, 0, 0);
+            sr.flipX = false;
         }
-        else
+        else if (playerDirection.x > 0)
         {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+            //transform.rotation = Quaternion.Euler(0, 180, 0);
+            sr.flipX = true;
         }
     }
 
