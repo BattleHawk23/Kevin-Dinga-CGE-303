@@ -20,7 +20,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Projectile Platformer With Enemy Movement.unity
     guid: d02536a6886f2c24780cf0a5d85d90a3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ProjectilePlatformer.unity
     guid: 84973cde4c4cb2a4f961f2f1a00934e4
+  - enabled: 1
+    path: Assets/Scenes/Shooting Platformer Finished.unity
+    guid: 9e9dfadc472462c49bc2ffae362d97d0
   m_configObjects: {}
